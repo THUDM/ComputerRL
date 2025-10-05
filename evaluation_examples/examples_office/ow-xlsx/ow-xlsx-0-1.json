@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-0-1",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nHow can I create a formula in Excel that will display a result from Column C when I input any one piece of data from either Column A or B? The formula should work regardless of whether the data in Columns A and B are integers or text. It was mentioned that when the user switched the data between Columns A and B, the initially provided formula no longer worked, indicating that sometimes Column A contains integer data and sometimes Column B does.\n   My current formula is:INDEX(A:C,MATCH(G3,A:A,0),3)\nPlease fill in the answer here:\nH3:H4\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_55126_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_55126_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_55126_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_55126_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_55126_input.xlsx",
+            "dest": "1_55126_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Cell-Level Manipulation",
+            "answer_position": "H3:H4"
+        }
+    }
+}

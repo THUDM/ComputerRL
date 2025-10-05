@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-0-30",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nHow can I extract a value from a cell in a column that contains a longer phrase incorporating the text 'XYZ12345'? For instance, given 'XYZ12345' as the search term, I need to return the number 9 from the data because 'XYZ12345' appears within the cell 'ABIGMANXYZ12345'. I attempted to use VLOOKUP for a partial match but was unsuccessful. The data layout and the requirement for the output are demonstrated in the attached Excel workbook.\nPlease fill in the answer here:\nB1\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_51913_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_51913_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_51913_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_51913_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_51913_input.xlsx",
+            "dest": "1_51913_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Cell-Level Manipulation",
+            "answer_position": "B1"
+        }
+    }
+}

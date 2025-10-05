@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-1-8",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nI'm seeking assistance with creating a macro in Excel. The macro should compare cells within column B and identify any references that match. Once a matching reference is found, the macro should then check the corresponding cells in column C to determine if their values are within a 0.10 difference of each other. If both conditions are met (matching reference and value difference of 0.10 or less), the macro should highlight the cells with the reference and value in yellow.\nPlease fill in the answer here:\n'Recon'!B2:C180\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_193-42_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_193-42_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_193-42_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_193-42_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_193-42_input.xlsx",
+            "dest": "1_193-42_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Sheet-Level Manipulation",
+            "answer_position": "'Recon'!B2:C180"
+        }
+    }
+}

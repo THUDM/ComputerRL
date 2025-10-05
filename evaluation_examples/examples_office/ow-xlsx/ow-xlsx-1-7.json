@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-1-7",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nI attempted to use a VBA macro to transpose data from a column to a row in Excel for items that have duplicates in column A. I am working with two sheets: the original data resides in a sheet named 'Orig Data,' and I want to place the result in another sheet named 'FinalReport.' Additionally, I don't want to use Power Query because I'm using Excel 2010 which doesn't support it; I'm specifically looking for a VBA solution.  In addition, answers should be printed in the \"FinalReport\" table, starting in the second row. I have provided part of the sample in the table \"FinalRepor\", when you output the answer, please start from cell A1, covering the corresponding sample position.\nPlease fill in the answer here:\nFinalReport'!A2:F5\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_21-16_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_21-16_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_21-16_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_21-16_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_21-16_input.xlsx",
+            "dest": "1_21-16_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Sheet-Level Manipulation",
+            "answer_position": "FinalReport'!A2:F5"
+        }
+    }
+}

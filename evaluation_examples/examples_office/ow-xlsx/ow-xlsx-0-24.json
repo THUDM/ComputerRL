@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-0-24",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nI need to extract a value from a 'Data' sheet in Excel based on a date found on the 'Calcs' sheet. Specifically, I want to check if the date from the 'Calcs' sheet falls within the same month as any date on the 'Data' sheet, and if it does, return the associated £ value from the 'Data' sheet. The context and mechanics of the problem should be clearer in the sample sheet I've provided.\nPlease fill in the answer here:\n'Calcs'!D4\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_52931_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_52931_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_52931_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_52931_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_52931_input.xlsx",
+            "dest": "1_52931_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Cell-Level Manipulation",
+            "answer_position": "'Calcs'!D4"
+        }
+    }
+}

@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-0-18",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nHow do I create a formula in Excel where, if a value in column C on Sheet2 matches a value in column A on Sheet1, the corresponding amount from column B on Sheet2 is added to the relevant cell in column B on Sheet1? For example, if 'Sheet2' cells C2 and C3 both match 'Sheet1' cell A2, I would like to add the amounts from 'Sheet2' cells B2 and B3 into 'Sheet1' cell B2.\nPlease fill in the answer here:\n'Sheet1'!B2:B3\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_57866_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_57866_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_57866_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_57866_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_57866_input.xlsx",
+            "dest": "1_57866_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Cell-Level Manipulation",
+            "answer_position": "'Sheet1'!B2:B3"
+        }
+    }
+}

@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-0-17",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nI am seeking a more efficient way to handle increasing preorder products in Excel as manual counting has become too time consuming. I need a formula that operates such that if cell B1 equals a specific value, for example 'ABC', then it should count the value in cell C1. In my current method, I use the formula '=COUNTIFS(B:B,\"TV\")' which counts the number of rows containing 'TV', but instead I need it to count the value in the cell to the immediate right of each 'TV' descriptor. Attached is a sample Excel file where A1:B5 shows the intended results for the data in A12:C22.\nPlease fill in the answer here:\nB2:B5\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_50796_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_50796_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_50796_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_50796_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_50796_input.xlsx",
+            "dest": "1_50796_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Cell-Level Manipulation",
+            "answer_position": "B2:B5"
+        }
+    }
+}

@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-0-26",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nHow do I determine in Excel that if a value from one row array matches a reference cell value, then the result should be the corresponding value from a second row array, but if it doesn't match, the result should be a different specified cell value? The precise scenario and table are provided in the attached spreadsheet.   Matching cells in row arays, under specific condition    If one of the values in the row aray [F3:J3] is equal to the core number in D3 Then the result is the matching value in [F7:J7] if none of the values in the row aray [F3:J3] is equal to the core number in D3 then the result is D7 In the table hereabove, J3 = D3, therefore the resul is J7                              Comment ：yes, I3 - D3  matching value is I7\nPlease fill in the answer here:\nK4\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_57771_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_57771_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_57771_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_57771_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_57771_input.xlsx",
+            "dest": "1_57771_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Cell-Level Manipulation",
+            "answer_position": "K4"
+        }
+    }
+}

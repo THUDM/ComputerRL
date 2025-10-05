@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-0-11",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nHow can I automatically calculate the number of wins for each player in my spreadsheet which currently tracks game scores? I manually recorded the win count in column H for each player, corresponding to the player with the highest score in each game. For instance, Tim won 3 times. I need a formula to populate column H with these counts instead of entering them manually. I'm not familiar with how to search for similar questions on this forum, and I've attached the relevant file for reference.\nPlease fill in the answer here:\nH2:H8\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_52532_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_52532_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_52532_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_52532_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_52532_input.xlsx",
+            "dest": "1_52532_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Cell-Level Manipulation",
+            "answer_position": "H2:H8"
+        }
+    }
+}

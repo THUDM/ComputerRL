@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-0-8",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nIn my Excel file containing project data, each project, identified by a consistent budget ID in column H, may have multiple lines representing different components, such as technology and services listed in column L as revenue types. I need to determine which projects include technology and then mark all associated lines of such projects, regardless of whether a line item itself is technology or service, with a 'Y' in column Q. Projects without a linked budget should be marked as 'N' in column Q. The current formula only marks technology revenue lines and thus doesn't accurately reflect projects that include technology. The sample workbook provided contains  sample projects \nPlease fill in the answer here:\nQ2:Q11\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_41348_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_41348_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_41348_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_41348_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_41348_input.xlsx",
+            "dest": "1_41348_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Cell-Level Manipulation",
+            "answer_position": "Q2:Q11"
+        }
+    }
+}

@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-0-15",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nI have a column with values formatted as 'What:Who-Size-SKU' (e.g., 'FG:BJ-155-00310'), and I need to extract the 'Size' component to convert it into a corresponding gallon size (e.g., '155' to '15.5 gals'). What formula can I use to filter and display this information? I've tried using VLOOKUP without consistent success. Additionally, can you explain the syntax of the formula '=LOOKUP(2,1/(ISNUMBER(SEARCH(\"-\"&$A$8:$A$18&\"-\",E8))),$B$8:$B$18)' suggested by another user, specifically, if '-search' is an additional formula within it? Finally, how would I adjust the formula if the data I need to reference is on a different worksheet?\n \nMy current formula is:\nVLOOKUP(E8,'C:/Users/jesse/Desktop/2020 Monthly Sales Info.xlsx'!Table3[#数据],2,FALSE)\nPlease fill in the answer here:\n'Sheet1'!F8\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_58994_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_58994_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_58994_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_58994_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_58994_input.xlsx",
+            "dest": "1_58994_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Cell-Level Manipulation",
+            "answer_position": "'Sheet1'!F8"
+        }
+    }
+}

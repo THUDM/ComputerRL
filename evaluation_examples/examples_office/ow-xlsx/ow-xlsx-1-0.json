@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-1-0",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nI have written code intending to delete rows in Column A of an Excel worksheet where each cell's content includes any of the letters X, U, or Z. These could be part of text or numbers such as '11100X', 'X514165', 'U99914', 'Z00015', or 'ZZZZZZ'. However, I encountered a runtime error stating 'Invalid procedure call or argument.' I had highlighted the rows to be deleted in yellow. Can someone test my code and provide the necessary amendments? Here is the code I've been working with: Sub Delete_X_U_and_Z() Dim finalrow As Long With Sheets('Consolidated BEE') finalrow = .Cells('A65536').End(xlUp).Row For I = finalrow To 2 Step -1 If .Cells(I, 1).Value Like '*[XZU]*' Then .Cells(I, 1).EntireRow.Delete End If Next I End With End Sub\nPlease fill in the answer here:\n'Sheet1'!A1:A14\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_228-19_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_228-19_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_228-19_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_228-19_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_228-19_input.xlsx",
+            "dest": "1_228-19_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Sheet-Level Manipulation",
+            "answer_position": "'Sheet1'!A1:A14"
+        }
+    }
+}

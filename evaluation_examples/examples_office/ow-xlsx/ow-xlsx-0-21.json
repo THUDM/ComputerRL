@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-0-21",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nHow can I perform a lookup in Excel to retrieve a value from a Data Table and place it into a report format, using the data and structure provided in the attached file?\nCurrently I need to lookup a value from a Data Table and return the value to the report format. Kindly refer to the attach file for reference. How can I lookup the Category Value based on the (1) Work Criteria, (2) Category Type and (3) Material from the Data Table above?  \nNote : The category value varies based on work type and material type. \nPlease fill in the answer here:\nD17:D22\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_18935_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_18935_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_18935_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_18935_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_18935_input.xlsx",
+            "dest": "1_18935_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Cell-Level Manipulation",
+            "answer_position": "D17:D22"
+        }
+    }
+}
