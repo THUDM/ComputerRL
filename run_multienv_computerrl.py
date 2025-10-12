@@ -20,7 +20,7 @@ from tqdm import tqdm
 
 import lib_run_single
 from desktop_env.desktop_env import MAX_RETRIES, DesktopEnv as DesktopEnvBase
-from mm_agents.computerrl import ComputerRLAgent
+from mm_agents.autoglm import AutoGLMAgent
 from typing import Optional, Dict, Any
 from multiprocessing import Pool
 
@@ -72,7 +72,7 @@ def config() -> argparse.Namespace:
         help="Virtualization provider (vmware, docker, aws, azure, gcp, virtualbox)",
     )
     parser.add_argument("--headless", action="store_true", default=True, help="Run in headless machine")
-    parser.add_argument("--action_space", type=str, default="computerrl_computer_use", help="Action type")
+    parser.add_argument("--action_space", type=str, default="autoglm_computer_use", help="Action type")
     parser.add_argument(
         "--observation_type",
         choices=["screenshot", "a11y_tree", "screenshot_a11y_tree", "som"],
@@ -89,7 +89,7 @@ def config() -> argparse.Namespace:
     parser.add_argument("--test_config_base_dir", type=str, default="evaluation_examples")
 
     # lm config
-    parser.add_argument("--model", type=str, default="computerrl-os")
+    parser.add_argument("--model", type=str, default="autoglm-os")
     parser.add_argument("--temperature", type=float, default=0.2)
     parser.add_argument("--top_p", type=float, default=0.1)
     parser.add_argument("--max_tokens", type=int, default=2048)
@@ -226,9 +226,9 @@ class DesktopEnv(DesktopEnvBase):
             
         logger.info("Environment setup complete.")
 
-        # Upload tools from computerrl package
-        import mm_agents.computerrl
-        tool_dir = os.path.join(os.path.dirname(mm_agents.computerrl.__file__), 'tools', 'package')
+        # Upload tools from autoglm package
+        import mm_agents.autoglm
+        tool_dir = os.path.join(os.path.dirname(mm_agents.autoglm.__file__), 'tools', 'package')
         for file in os.listdir(tool_dir):
             if os.path.isdir(os.path.join(tool_dir, file)):
                 continue
@@ -443,7 +443,7 @@ def _worker_run(task):
             os_type="Ubuntu",
             require_a11y_tree=args.observation_type in ["a11y_tree", "screenshot_a11y_tree", "som"],
         )
-        agent = ComputerRLAgent(
+        agent = AutoGLMAgent(
             action_space=args.action_space,
             observation_type=args.observation_type,
             max_trajectory_length=args.max_trajectory_length,
@@ -463,7 +463,7 @@ def _worker_run(task):
 
         local_scores = []
         try:
-            lib_run_single.run_single_example_computerrl(
+            lib_run_single.run_single_example_autoglm(
                 agent,
                 env,
                 example,

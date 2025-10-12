@@ -38,7 +38,7 @@ Using cloud services for parallel evaluation can significantly accelerate evalua
 We provide comprehensive AWS support with a Host-Client architecture that enables large-scale parallel evaluation of OSWorld tasks. 
 
 ## 🧪 Experiments
-### Running ComputerRL
+### Running AutoGLM-OS
 
 > **⚠️ Important Configuration Requirements:**
 > * **Proxy Configuration**: Some tasks may require proxy settings to function properly (this depends on the strength of website defenses against your network location). Please refer to the system's proxy configuration documentation for details.
@@ -46,7 +46,7 @@ We provide comprehensive AWS support with a Host-Client architecture that enable
 > * **Impact of Missing Configuration**: If these configurations are not properly set up, the corresponding tasks will fail to execute correctly, resulting in lower evaluation scores.
 
 
-To run the ComputerRL agent in our paper, you can execute the following command:
+To run the AutoGLM-OS agent in our paper, you can execute the following command:
 
 Set the **OPENAI_API_KEY** environment variable with your API key
 ```bash
@@ -60,7 +60,7 @@ export OPENAI_BASE_URL='http://your-custom-endpoint.com/v1'  # Optional: default
 
 Single-threaded execution
 ```bash
-python run_computerrl.py \
+python run_autoglm.py \
     --provider_name docker \
     --path_to_vm Ubuntu/Ubuntu.vmx \
     --headless \
@@ -71,7 +71,7 @@ python run_computerrl.py \
 
 Parallel execution (example showing switching provider to `docker`)
 ```bash
-python run_multienv_computerrl.py \
+python run_multienv_autoglm.py \
     --provider_name docker \
     --path_to_vm Ubuntu/Ubuntu.vmx \
     --headless \

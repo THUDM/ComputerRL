@@ -21,9 +21,9 @@ from openai import APIConnectionError, APIError, RateLimitError
 from types import SimpleNamespace
 
 import lib_run_single
-from run_computerrl_v import DesktopEnv, get_unfinished, get_result
+from run_autoglm_v import DesktopEnv, get_unfinished, get_result
 from desktop_env.desktop_env import MAX_RETRIES, DesktopEnv as DesktopEnvBase
-from mm_agents.computerrl_v import ComputerRLAgent
+from mm_agents.autoglm_v import AutoGLMAgent
 from openai import OpenAI
 
 logger = logging.getLogger("desktopenv.experiment")
@@ -40,7 +40,7 @@ def config() -> argparse.Namespace:
         help="Virtualization provider (vmware, docker, aws, azure, gcp, virtualbox)",
     )
     parser.add_argument("--headless", action="store_true", default=True, help="Run in headless machine")
-    parser.add_argument("--action_space", type=str, default="computerrl_computer_use", help="Action type")
+    parser.add_argument("--action_space", type=str, default="autoglm_computer_use", help="Action type")
     parser.add_argument(
         "--observation_type",
         choices=["screenshot", "a11y_tree", "screenshot_a11y_tree", "som"],
@@ -57,7 +57,7 @@ def config() -> argparse.Namespace:
     parser.add_argument("--test_config_base_dir", type=str, default="evaluation_examples/examples")
 
     # lm config
-    parser.add_argument("--model", type=str, default="computerrl-os")
+    parser.add_argument("--model", type=str, default="autoglm-os")
     parser.add_argument("--temperature", type=float, default=0.2)
     parser.add_argument("--top_p", type=float, default=0.1)
     parser.add_argument("--max_tokens", type=int, default=2048)
@@ -141,7 +141,7 @@ def _worker_run(task):
             os_type="Ubuntu",
             require_a11y_tree=args.observation_type in ["a11y_tree", "screenshot_a11y_tree", "som"],
         )
-        agent = ComputerRLAgent(
+        agent = AutoGLMAgent(
             action_space=args.action_space,
             observation_type=args.observation_type,
             screen_size=(args.screen_width, args.screen_height),
@@ -163,7 +163,7 @@ def _worker_run(task):
 
         local_scores = []
         try:
-            lib_run_single.run_single_example_computerrl(
+            lib_run_single.run_single_example_autoglm(
                 agent,
                 env,
                 example,

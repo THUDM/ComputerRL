@@ -94,7 +94,7 @@ def run_single_example_human(env, example, max_steps, instruction, args, example
     with open(os.path.join(example_result_dir, "result.txt"), "w", encoding="utf-8") as f:
         f.write(f"{result}\n")
 
-def run_single_example_computerrl(agent, env, example, max_steps, instruction, args, example_result_dir, scores):
+def run_single_example_autoglm(agent, env, example, max_steps, instruction, args, example_result_dir, scores):
     runtime_logger = setup_logger(example, example_result_dir)
     try:
         agent.reset(runtime_logger)
