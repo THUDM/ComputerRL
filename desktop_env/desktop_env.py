@@ -185,7 +185,7 @@ class DesktopEnv(gym.Env):
 
         # mode: human or machine
         self.instruction = None
-        assert action_space in ["computer_13", "pyautogui", "claude_computer_use", "computerrl_computer_use"]
+        assert action_space in ["computer_13", "pyautogui", "claude_computer_use", "autoglm_computer_use"]
         self.action_space = action_space  # todo: refactor it to the ActType
 
         # episodic stuffs, like counters, will be updated or reset

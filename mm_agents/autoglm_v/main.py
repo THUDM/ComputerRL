@@ -1,6 +1,8 @@
 import logging
 import re
 from base64 import b64encode
+from PIL import Image
+from io import BytesIO
 from typing import Dict, List
 
 from .prompt.accessibility_tree_handle import linearize_accessibility_tree, trim_accessibility_tree
@@ -12,6 +14,14 @@ logger = logging.getLogger("desktopenv.agent")
 
 pure_text_settings = ["a11y_tree"]
 
+def resize_image(image, w, h):
+    img = Image.open(BytesIO(image))
+    # resize to max_pixel_num max_pixels
+    img = img.resize((w, h))
+    buf = BytesIO()
+    img.save(buf, format='PNG')
+    img_bytes = buf.getvalue()
+    return img_bytes
 
 def parse_code_from_string(input_string):
     # input_string = "\n".join([line.strip() for line in input_string.split(';') if line.strip()])
@@ -48,25 +58,35 @@ def parse_code_from_string(input_string):
     return codes
 
 
-class ComputerRLAgent:
+class AutoGLMAgent:
     def __init__(
         self,
-        action_space="computerrl_computer_use",
+        action_space="autoglm_computer_use",
         observation_type="a11y_tree",
         max_trajectory_length=3,
         a11y_tree_max_items=300,
-        with_image: bool = False,
+        with_image: bool = True,
+        screen_size = (1920, 1080),
+        image_size=(1920, 1080),
+        with_atree: bool = False,
+        glm41v_format: bool = True,
+        relative_coordinate: bool = True,
         client_password="password",
         gen_func=None,
         tool_in_sys_msg: bool = True,
     ):
         self.action_space = action_space
         self.observation_type = observation_type
-        assert action_space in ["computerrl_computer_use"], "Invalid action space"
+        assert action_space in ["autoglm_computer_use"], "Invalid action space"
         assert observation_type in ["a11y_tree"], "Invalid observation type"
         self.max_trajectory_length = max_trajectory_length
         self.a11y_tree_max_items = a11y_tree_max_items
         self.with_image = with_image
+        self.screen_size = screen_size
+        self.image_size = image_size
+        self.with_atree = with_atree
+        self.glm41v_format = glm41v_format
+        self.relative_coordinate = relative_coordinate
         self.client_password = client_password
         self.gen_func = gen_func
         self.tool_in_sys_msg = tool_in_sys_msg
@@ -79,6 +99,9 @@ class ComputerRLAgent:
             "vlc": "VLCTools",
             "google_chrome": "BrowserTools",
         }
+        
+        Agent.relative_coordinate = relative_coordinate
+        
         self.contents = []
 
     @property
@@ -104,7 +127,7 @@ class ComputerRLAgent:
             tool_name = None
 
         setup_prompt, func_def_prompt, note_prompt = Prompt.construct_procedural_memory(
-            Agent, app_name=tool_name, client_password=self.client_password
+            Agent, app_name=tool_name, client_password=self.client_password, with_image=self.with_image, with_atree=self.with_atree, relative_coordinate=self.relative_coordinate, glm41v_format=self.glm41v_format
         )
         if self.tool_in_sys_msg:
             system_message = setup_prompt + "\n\n" + func_def_prompt + "\n\n" + note_prompt
@@ -136,10 +159,10 @@ class ComputerRLAgent:
         app_info = obs["app_info"].strip() if obs["app_info"] else "None"
         app_info = app_info[:5000] + "..." if len(app_info) > 5000 else app_info
 
-        prompt = "* Apps: {}\n\n* Current App: {}\n\n* A11y Tree: {}\n\n* App Info: {}\n\n* Previous Action Result: {}".format(
+        prompt = "* Apps: {}\n\n* Current App: {}{}\n\n* App Info: {}\n\n* Previous Action Result: {}".format(
             app_str.strip(),
             obs["cur_window_id"].strip() if obs["cur_window_id"] in app_str else "None",
-            tree.strip(),
+            '\n\n* A11y Tree: {}'.format(tree.strip()) if self.with_atree else "",
             app_info,
             last_result if last_result else "None",
         ) + (
@@ -148,15 +171,16 @@ class ComputerRLAgent:
 
         content = [{"type": "text", "text": prompt}]
         if self.with_image and obs.get('screenshot'):
-            content.append(
+            screenshot = resize_image(obs['screenshot'], self.image_size[0], self.image_size[1])
+            content = [
                 {
                     "type": "image_url",
                     "image_url": {
-                        "url": f"data:image/png;base64,{b64encode(obs['screenshot']).decode('utf-8')}",
+                        "url": f"data:image/png;base64,{b64encode(screenshot).decode('utf-8')}",
                         "detail": "high",
                     },
                 }
-            )
+            ] + content
 
         messages.append({"role": "user", "content": content})
 

@@ -20,7 +20,7 @@ from tqdm import tqdm
 
 import lib_run_single
 from desktop_env.desktop_env import MAX_RETRIES, DesktopEnv as DesktopEnvBase
-from mm_agents.computerrl_v import ComputerRLAgent
+from mm_agents.autoglm_v import AutoGLMAgent
 from typing import Optional, Dict, Any
 from openai import OpenAI
 
@@ -74,7 +74,7 @@ def config() -> argparse.Namespace:
         help="Virtualization provider (vmware, docker, aws, azure, gcp, virtualbox)",
     )
     parser.add_argument("--headless", action="store_true", default=True, help="Run in headless machine")
-    parser.add_argument("--action_space", type=str, default="computerrl_computer_use", help="Action type")
+    parser.add_argument("--action_space", type=str, default="autoglm_computer_use", help="Action type")
     parser.add_argument(
         "--observation_type",
         choices=["screenshot", "a11y_tree", "screenshot_a11y_tree", "som"],
@@ -91,7 +91,7 @@ def config() -> argparse.Namespace:
     parser.add_argument("--test_config_base_dir", type=str, default="evaluation_examples/examples")
 
     # lm config
-    parser.add_argument("--model", type=str, default="computerrl-os")
+    parser.add_argument("--model", type=str, default="autoglm-os")
     parser.add_argument("--temperature", type=float, default=0.2)
     parser.add_argument("--top_p", type=float, default=0.1)
     parser.add_argument("--max_tokens", type=int, default=2048)
@@ -229,9 +229,9 @@ class DesktopEnv(DesktopEnvBase):
             
         logger.info("Environment setup complete.")
 
-        # Upload tools from computerrl package
-        import mm_agents.computerrl_v
-        tool_dir = os.path.join(os.path.dirname(mm_agents.computerrl_v.__file__), 'tools', 'package')
+        # Upload tools from autoglm_v package
+        import mm_agents.autoglm_v
+        tool_dir = os.path.join(os.path.dirname(mm_agents.autoglm_v.__file__), 'tools', 'package')
         for file in os.listdir(tool_dir):
             if os.path.isdir(os.path.join(tool_dir, file)):
                 continue
@@ -423,7 +423,7 @@ def test(args: argparse.Namespace, test_all_meta: dict) -> None:
         os_type="Ubuntu",
         require_a11y_tree=args.observation_type in ["a11y_tree", "screenshot_a11y_tree", "som"],
     )
-    agent = ComputerRLAgent(
+    agent = AutoGLMAgent(
         action_space=args.action_space,
         observation_type=args.observation_type,
         screen_size=(args.screen_width, args.screen_height),
@@ -460,7 +460,7 @@ def test(args: argparse.Namespace, test_all_meta: dict) -> None:
             os.makedirs(example_result_dir, exist_ok=True)
             # example start running
             try:
-                lib_run_single.run_single_example_computerrl(
+                lib_run_single.run_single_example_autoglm(
                     agent,
                     env,
                     example,
