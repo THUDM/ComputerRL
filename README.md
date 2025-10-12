@@ -1,5 +1,7 @@
 # ComputerRL: Scaling End-to-End Online Reinforcement Learning for Computer Use Agents
 
+[![arXiv](https://img.shields.io/badge/arXiv-2508.14040-b31b1b.svg)](https://arxiv.org/abs/2508.14040)
+
 This repository is the code repository for ComputerRL, which is based on modifications and simplifications of the OSWorld repository. ComputerRL focuses on end-to-end online reinforcement learning methods for training computer use agents. This project has been optimized and simplified based on the OSWorld benchmark environment, providing a more focused and efficient experimental platform for computer use research.
 
 <p align="center">
@@ -37,7 +39,7 @@ Add the following arguments when initializing `DesktopEnv`:
 Using cloud services for parallel evaluation can significantly accelerate evaluation efficiency (can reduce evaluation time to within 1 hour through parallelization). 
 We provide comprehensive AWS support with a Host-Client architecture that enables large-scale parallel evaluation of OSWorld tasks. 
 
-## 🧪 Experiments
+## 🧪 Reproduce Results
 ### Running AutoGLM-OS
 
 > **⚠️ Important Configuration Requirements:**
@@ -48,14 +50,26 @@ We provide comprehensive AWS support with a Host-Client architecture that enable
 
 To run the AutoGLM-OS agent in our paper, you can execute the following command:
 
-Set the **OPENAI_API_KEY** environment variable with your API key
+Start a local SGLang server (OpenAI-compatible) for our models:
+
+Text-only model (`zai-org/autoglm-os-9b`)
 ```bash
-export OPENAI_API_KEY='your_openai_api_key'
+pip install "sglang[all]"  # if not installed
+python -m sglang.launch_server \
+  --model zai-org/autoglm-os-9b \
+  --host 0.0.0.0 --port 30000 --served-model-name autoglm-os
 ```
 
-Optionally, set **OPENAI_BASE_URL** to use a custom OpenAI-compatible API endpoint
+Multimodal model (`zai-org/autoglm-os-9b-20250925`)
 ```bash
-export OPENAI_BASE_URL='http://your-custom-endpoint.com/v1'  # Optional: defaults to https://api.openai.com
+python -m sglang.launch_server \
+  --model zai-org/autoglm-os-9b-20250925 \
+  --host 0.0.0.0 --port 30000 --served-model-name autoglm-os
+```
+
+Set the environment variable:
+```bash
+export OPENAI_BASE_URL='http://127.0.0.1:30000/v1'
 ```
 
 Single-threaded execution
@@ -81,9 +95,32 @@ python run_multienv_autoglm.py \
 ```
 
 To run the multimodal agent, replace the file name with `_v` version.
+```bash
+python run_autoglm_v.py \
+    --provider_name docker \
+    --path_to_vm Ubuntu/Ubuntu.vmx \
+    --headless \
+    --num_workers 20 \
+    --max_steps 15 \
+    --test_all_meta_path ./evaluation_examples/test_nogdrive.json
+```
 
 The results, which include screenshots, actions, and video recordings of the agent's task completion, will be saved in the `./results` (or other `result_dir` you specified) directory in this case. 
 You can then run the following command to obtain the result:
 ```bash
 python show_result.py
+```
+
+## 📄 Citation
+
+```
+@misc{lai2025computerrl,
+    title={ComputerRL: Scaling End-to-End Online Reinforcement Learning for Computer Use Agents}, 
+    author={Hanyu Lai and Xiao Liu and Yanxiao Zhao and Han Xu and Hanchen Zhang and Bohao Jing and Yanyu Ren and Shuntian Yao and Yuxiao Dong and Jie Tang},
+    year={2025},
+    eprint={2508.14040},
+    archivePrefix={arXiv},
+    primaryClass={cs.AI},
+    url={https://arxiv.org/abs/2508.14040}, 
+}
 ```
