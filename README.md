@@ -3,7 +3,7 @@
 <p align="center">
    <a href="https://arxiv.org/abs/2508.14040" target="_blank">📃 Paper </a>
    &nbsp;|&nbsp;
-   <a href="https://WIP" target="_blank">📊 OfficeWorld Leaderboard</a>
+   <a href="https://docs.google.com/spreadsheets/d/1wFHvf3mb42j74JtAww4CTOc7tdF8KIfGZyRQyLhh5pc/edit?usp=sharing" target="_blank">📊 OfficeWorld Leaderboard</a>
 </p>
 
 
@@ -134,10 +134,14 @@ python run_multienv_autoglm.py \
     --num_workers 20 \
     --max_steps 15 \
     --test_all_meta_path ./evaluation_examples/test_office.json
+```
 
 ### 🏆 Leaderboard
 
-🏗️ WIP
+The leaderboard is available [here](https://docs.google.com/spreadsheets/d/1wFHvf3mb42j74JtAww4CTOc7tdF8KIfGZyRQyLhh5pc/edit?usp=sharing), check it out!
+
+If you want to add your results to the leaderboard, please email to [`hanyullai@outlook.com`](mailto:hanyullai@outlook.com).
+
 
 ## 📄 Citation
 
