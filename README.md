@@ -1,6 +1,11 @@
 # ComputerRL: Scaling End-to-End Online Reinforcement Learning for Computer Use Agents
 
-[![arXiv](https://img.shields.io/badge/arXiv-2508.14040-b31b1b.svg)](https://arxiv.org/abs/2508.14040)
+<p align="center">
+   <a href="https://arxiv.org/abs/2508.14040" target="_blank">📃 Paper </a>
+   &nbsp;|&nbsp;
+   <a href="https://WIP" target="_blank">📊 OfficeWorld Leaderboard</a>
+</p>
+
 
 This repository is the code repository for ComputerRL, which is based on modifications and simplifications of the OSWorld repository. ComputerRL focuses on end-to-end online reinforcement learning methods for training computer use agents. This project has been optimized and simplified based on the OSWorld benchmark environment, providing a more focused and efficient experimental platform for computer use research.
 
