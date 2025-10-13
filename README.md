@@ -78,7 +78,6 @@ python run_autoglm.py \
     --provider_name docker \
     --path_to_vm Ubuntu/Ubuntu.vmx \
     --headless \
-    --num_workers 20 \
     --max_steps 15 \
     --test_all_meta_path ./evaluation_examples/test_nogdrive.json
 ```
@@ -96,7 +95,7 @@ python run_multienv_autoglm.py \
 
 To run the multimodal agent, replace the file name with `_v` version.
 ```bash
-python run_autoglm_v.py \
+python run_multienv_autoglm_v.py \
     --provider_name docker \
     --path_to_vm Ubuntu/Ubuntu.vmx \
     --headless \
@@ -110,6 +109,30 @@ You can then run the following command to obtain the result:
 ```bash
 python show_result.py
 ```
+
+## 📊 OfficeWorld Benchmark
+
+OfficeWorld benchmark is built based on [SpreadsheetBench](https://github.com/RUCKBReasoning/SpreadsheetBench), [PPTC](https://github.com/gydpku/PPTC), and in-house developed Writer domain tasks.
+The tasks are adapted as necessary to integrate them into the OSWorld framework.
+The resulting benchmark, termed OfficeWorld, enables systematic measurement of agent capabilities in office-oriented scenarios.
+
+### Running OfficeWorld Benchmark
+
+The tasks in OfficeWorld benchmark are saved in the `./evaluation_examples/officeworld` directory.
+You can run the following command to run the agent on OfficeWorld benchmark:
+
+```bash
+python run_multienv_autoglm.py \
+    --provider_name docker \
+    --path_to_vm Ubuntu/Ubuntu.vmx \
+    --headless \
+    --num_workers 20 \
+    --max_steps 15 \
+    --test_all_meta_path ./evaluation_examples/test_office.json
+
+### 🏆 Leaderboard
+
+🏗️ WIP
 
 ## 📄 Citation
 
