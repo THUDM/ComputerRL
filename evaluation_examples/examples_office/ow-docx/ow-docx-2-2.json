@@ -1,0 +1,78 @@
+{
+    "id": "ow-docx-2-2",
+    "instruction": "Please add the picture named \"farmer\" on your desktop to the end of the \"Introduction\" section, and move the textbox to the end of the document. Finally,  delete the first paragraph of the section \"Method\".",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/Women_textbox.docx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/farmer.png"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/Women_textbox.docx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "Women_textbox.docx - LibreOffice Writer",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "simple_docx_compare",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "Women_image_textbox_fix.docx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/Women_textbox.docx",
+            "dest": "Women_textbox.docx"
+        }
+    }
+}

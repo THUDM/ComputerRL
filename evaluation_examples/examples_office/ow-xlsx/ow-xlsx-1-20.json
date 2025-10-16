@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-1-20",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nI need a macro for my Excel file that updates the values in column E based on the data in columns A and D. Specifically, if column A is equal to 'USS', then for each corresponding row, check column D for the pay level; if the pay level equals 'R01', change the total in column E to 15.00, and if the pay level is any other 'R' level, assign varying amounts as follows: R01=15, R02=17, R03=23, R04=27, R05=32, R06=34. If the pay level does not match these specified 'R' levels, the total should be changed to 10. I am not sure if filtering column A for 'USS' entries before running the macro would improve performance, considering there are over 15,000 records. Initially, the rates were increasing by 5, but the rates have now changed for 2024, and that increase pattern is not applicable with the new rates.\nPlease fill in the answer here:\nE2:E19\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_22-12_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_22-12_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_22-12_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_22-12_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_22-12_input.xlsx",
+            "dest": "1_22-12_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Sheet-Level Manipulation",
+            "answer_position": "E2:E19"
+        }
+    }
+}

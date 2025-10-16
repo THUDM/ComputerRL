@@ -1,0 +1,67 @@
+{
+    "id": "ow-docx-1-18",
+    "instruction": "Please insert a text box after the sentence \"Borrowers typically must repay...\". The content to be filled in is \"Additional data table is needed\". And then, remove the comments added to \"Student loans\".",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/StudentLoans_comment.docx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/StudentLoans_comment.docx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "StudentLoans_comment.docx - LibreOffice Writer",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "simple_docx_compare",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "StudentLoans_textbox.docx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/StudentLoans_comment.docx",
+            "dest": "StudentLoans_comment.docx"
+        }
+    }
+}

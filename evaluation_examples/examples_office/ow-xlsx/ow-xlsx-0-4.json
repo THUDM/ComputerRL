@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-0-4",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nHow can I create a formula in Excel that will display the sum of two horizontal cells in a third cell, only if both of the first two cells contain a value? Specifically, if there's a calendar date in cell A1 and a number representing days or hours in cell B1, I want the sum to show in cell C1 but only if both A1 and B1 are not empty.\nPlease fill in the answer here:\nC2:C3\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_52220_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_52220_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_52220_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_52220_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_52220_input.xlsx",
+            "dest": "1_52220_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Cell-Level Manipulation",
+            "answer_position": "C2:C3"
+        }
+    }
+}

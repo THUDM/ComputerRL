@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-1-19",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nI have a column starting at cell A8, extending to the last populated row in the column, that contains numbers with incorrect formatting; specifically, leading, trailing, and internal spaces have been introduced within these cells. I attempted to create a VBA macro to rectify this by removing all spaces from these cells, but I haven't succeeded. Could you provide a solution to eliminate all types of spaces from these cells using VBA?\nPlease fill in the answer here:\n'customer numbers'!A8:A12\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_211-13_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_211-13_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_211-13_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_211-13_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_211-13_input.xlsx",
+            "dest": "1_211-13_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Sheet-Level Manipulation",
+            "answer_position": "'customer numbers'!A8:A12"
+        }
+    }
+}

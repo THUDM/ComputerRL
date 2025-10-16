@@ -1,0 +1,67 @@
+{
+    "id": "ow-docx-0-24",
+    "instruction": "Exchange the positions of the sections named \"Definitions and Scope\" and \"Educational Implications\".",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/Bilingualism.docx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/Bilingualism.docx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "Bilingualism.docx - LibreOffice Writer",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "simple_docx_compare",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "Bilingualism_fix0.docx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/Bilingualism.docx",
+            "dest": "Bilingualism.docx"
+        }
+    }
+}

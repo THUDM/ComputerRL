@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-1-14",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nI need help with my VBA code in Excel that's supposed to insert a certain number of rows based on the value in a cell. The code should insert new rows below the current one if the cell's value (positioned two columns to the right) is greater than 1. However, it only inserts the first row correctly, then it inserts the second row in the wrong place and skips the third insertion altogether. I've included the code with a loop through Column A and a conditional statement to check the cell's value, followed by a loop supposed to perform the insertions. An XLSM file with my attempt is also attached. Can someone help me figure out what is wrong and how to make the code correctly insert the new rows based on the 'xCount' value?\nPlease fill in the answer here:\n'Ref Program Names (3)'!A9:D9\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_248-48_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_248-48_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_248-48_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_248-48_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_248-48_input.xlsx",
+            "dest": "1_248-48_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Sheet-Level Manipulation",
+            "answer_position": "'Ref Program Names (3)'!A9:D9"
+        }
+    }
+}

@@ -1,0 +1,67 @@
+{
+    "id": "ow-docx-1-16",
+    "instruction": "Delete all the pictures in the document and change the comment content to \"Done\".",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/Women_image_comment.docx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/Women_image_comment.docx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "Women_image_comment.docx - LibreOffice Writer",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "simple_docx_compare",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "Women_comment.docx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/Women_image_comment.docx",
+            "dest": "Women_image_comment.docx"
+        }
+    }
+}

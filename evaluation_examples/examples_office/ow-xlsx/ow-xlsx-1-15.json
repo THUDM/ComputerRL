@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-1-15",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nI'm looking for a code that can merge cells within column C when adjacent cells in column B have matching values. In the end, the worksheet with merged cells won't be utilizing any formulas or VBA.\nPlease fill in the answer here:\n'Sheet1'!C4:C20\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_203-33_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_203-33_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_203-33_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_203-33_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_203-33_input.xlsx",
+            "dest": "1_203-33_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Sheet-Level Manipulation",
+            "answer_position": "'Sheet1'!C4:C20"
+        }
+    }
+}

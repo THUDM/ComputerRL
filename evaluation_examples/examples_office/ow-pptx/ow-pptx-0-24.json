@@ -1,0 +1,67 @@
+{
+    "id": "ow-pptx-0-24",
+    "instruction": "Please delete the row with step 3 in the table on the last slide.",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/People_short_add.pptx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/People_short_add.pptx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "People_short_add.pptx - LibreOffice Impress",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 3.0
+                }
+            }
+        ],
+        "func": "simple_pptx_compare",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "People_short_mvrow.pptx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/People_short_add.pptx",
+            "dest": "People_short_add.pptx"
+        }
+    }
+}

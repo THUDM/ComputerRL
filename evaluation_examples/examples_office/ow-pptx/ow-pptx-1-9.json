@@ -1,0 +1,67 @@
+{
+    "id": "ow-pptx-1-9",
+    "instruction": "On page 12, fill in the revenue with $ 1000, $1250, $300, $2000.",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/cartoon.pptx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/cartoon.pptx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "cartoon.pptx - LibreOffice Impress",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 3.0
+                }
+            }
+        ],
+        "func": "simple_pptx_compare",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "cartoon_golden.pptx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/cartoon.pptx",
+            "dest": "cartoon.pptx"
+        }
+    }
+}

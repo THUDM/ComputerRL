@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-0-31",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nHow can I create a calculation in Excel for weighted revenue where the percentage used to multiply the revenue varies automatically based on a stage selected from a pick list?\nI would really appreciate some guidance here.\n\nI am trying to create a calculation for weighted revenue. The % by which the revenue should be multiplied by should vary automatically depending upon the stage selected from the pick list. What I would like is for the column G to show the est. revenue multiplied by the correct percentage for that pipeline stage (as defined on the Data tab).\nPlease fill in the answer here:\n'Opportunities'!G2:G3\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_18645_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_18645_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_18645_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_18645_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_18645_input.xlsx",
+            "dest": "1_18645_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Cell-Level Manipulation",
+            "answer_position": "'Opportunities'!G2:G3"
+        }
+    }
+}

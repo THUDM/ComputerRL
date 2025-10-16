@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-0-19",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nB1 to G1 have aggregate formulas that change depending on the filtering in column H,When I filter Column H by colour, I would like a formula that puts the sort value in H1,so I can copy the results in row 1 to another sheet.Second sheet is sorted by purple--Therefore I would like H1 to display Purple.\n   I need a formula that allows me to insert a sort value into a specific cell, so that I can then copy the sorted results to other sheets. Unfortunately, I'm unsure how to adequately describe the process I want to implement. An attached spreadsheet named 'Filter Issue.xlsx' should provide the necessary context for my request.\nPlease fill in the answer here:\n'Sheet1'!H1\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_57728_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_57728_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_57728_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_57728_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_57728_input.xlsx",
+            "dest": "1_57728_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Cell-Level Manipulation",
+            "answer_position": "'Sheet1'!H1"
+        }
+    }
+}

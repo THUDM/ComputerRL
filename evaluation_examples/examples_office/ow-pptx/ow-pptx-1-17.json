@@ -1,0 +1,67 @@
+{
+    "id": "ow-pptx-1-17",
+    "instruction": "Change the title of the third slide to \"MASTER\". Furthermore, delete the text box on the fourth page that contains the words \"Follow me\".",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/Pollution_short.pptx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/Pollution_short.pptx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "Pollution_short.pptx - LibreOffice Impress",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 3.0
+                }
+            }
+        ],
+        "func": "simple_pptx_compare",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "Pollution_short_title_fix.pptx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/Pollution_short.pptx",
+            "dest": "Pollution_short.pptx"
+        }
+    }
+}

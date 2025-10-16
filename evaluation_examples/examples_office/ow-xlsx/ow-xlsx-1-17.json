@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-1-17",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nI need a macro that searches for rows in Column A containing the term 'Intagible Assets' and checks if the corresponding cell in Column C is empty. If Column C is empty, the macro should take the value from the cell directly below in Column C and move it up to the empty cell. It should also move the value from Column D in the row below up one row, to align with the 'Intagible Assets' text in Column A. For example, if 'Intagible Assets' is found in A13 and C13 is empty, the value from C14 should be moved to C13, and similarly, the value from D14 to D13.\nPlease fill in the answer here:\n'Import Data'!A13:C14\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_139-16_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_139-16_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_139-16_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_139-16_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_139-16_input.xlsx",
+            "dest": "1_139-16_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Sheet-Level Manipulation",
+            "answer_position": "'Import Data'!A13:C14"
+        }
+    }
+}

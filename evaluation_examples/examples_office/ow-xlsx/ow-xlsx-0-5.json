@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-0-5",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nI need assistance with using an INDEX and MATCH formula to find a match that corresponds with data in two columns, B and C, in my 'Job Code Table'. The current formula I have is =INDEX('Job Code Table'!A:A,MATCH(J1688,'Job Code Table'!C:C,0)& MATCH(J1688,'Job Code Table'!B:B,0)), but it's not returning the expected result. Can someone help me correct this formula?  As the formula to should look up either B or C in the Job code table - either one match is fine.\nPlease fill in the answer here:\n'Sheet1'!A2\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_38662_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_38662_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_38662_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_38662_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_38662_input.xlsx",
+            "dest": "1_38662_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Cell-Level Manipulation",
+            "answer_position": "'Sheet1'!A2"
+        }
+    }
+}

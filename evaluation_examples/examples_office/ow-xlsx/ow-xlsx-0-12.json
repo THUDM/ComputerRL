@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-0-12",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nI need an Excel formula that will automatically populate cells D9, D10, D11, and D12 with the Opening Balance, Debits, Credits, and Closing Balance respectively, when I select a Fiscal Month in cell D7. The details and expected results are outlined in the attached excel sheet.\n   I'm kindly asking for excel formula that when I select Fiscal Month on cell D7, it automatical fills cell D9, D10, D11, D12, with opening Balance, Debits, Credits and Closing Balance.\nPlease fill in the answer here:\nD9:D12\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_56274_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_56274_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_56274_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_56274_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_56274_input.xlsx",
+            "dest": "1_56274_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Cell-Level Manipulation",
+            "answer_position": "D9:D12"
+        }
+    }
+}

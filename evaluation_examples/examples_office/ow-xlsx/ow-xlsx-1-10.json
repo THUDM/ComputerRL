@@ -1,0 +1,71 @@
+{
+    "id": "ow-xlsx-1-10",
+    "instruction": "Below is the spreadsheet manipulation question you need to solve:\nIn my Excel file, the 'Open' sheet contains IDs in Columns C and K, and I need Excel to find all these IDs throughout the entire sheet and replace them with their respective Names. The corresponding Names for these IDs are located in Columns A and B of the 'Productivity' sheet. I am currently using a VBA script in Module 1, but I have to manually update the VBA script whenever a new ID/Name pair is added. I require assistance with creating a macro that can automate this replacement process and also automatically consider any new additions to Columns A and B in the future for replacements.\nPlease fill in the answer here:\n'Open'!C2:C23\n",
+    "config": [
+        {
+            "type": "download",
+            "parameters": {
+                "files": [
+                    {
+                        "url": "https://www.fakeurl.com/",
+                        "path": "/home/user/Desktop/1_105-24_input.xlsx"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "open",
+            "parameters": {
+                "path": "/home/user/Desktop/1_105-24_input.xlsx"
+            }
+        }
+    ],
+    "evaluator": {
+        "postconfig": [
+            {
+                "type": "activate_window",
+                "parameters": {
+                    "window_name": "1_105-24_input.xlsx - LibreOffice Calc",
+                    "strict": true
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            },
+            {
+                "type": "execute",
+                "parameters": {
+                    "command": [
+                        "python",
+                        "-c",
+                        "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+                    ]
+                }
+            },
+            {
+                "type": "sleep",
+                "parameters": {
+                    "seconds": 0.5
+                }
+            }
+        ],
+        "func": "compare_spreadsheet",
+        "expected": {
+            "type": "cloud_file",
+            "path": "https://www.fakeurl.com/",
+            "dest": "1_105-24_answer.xlsx"
+        },
+        "result": {
+            "type": "vm_file",
+            "path": "/home/user/Desktop/1_105-24_input.xlsx",
+            "dest": "1_105-24_input.xlsx"
+        },
+        "options": {
+            "instruction_type": "Sheet-Level Manipulation",
+            "answer_position": "'Open'!C2:C23"
+        }
+    }
+}
