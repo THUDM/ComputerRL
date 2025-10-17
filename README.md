@@ -50,14 +50,16 @@ pip install -r requirements.txt
 
 ### 📂 Download Experiment Files
 
-All experiment files will be cached under `./cache`.
-
-- **OSWorld:** You can refer to the OSWorld repository to conveniently download all cache files.
-- **OfficeWorld:** Download the experiment files from [Huggingface/OfficeWorld-Cache](fake—url) and extract them into the `./cache` directory.
+All experiment files will be cached under `./cache`. Obtain experiment files through the following methods:
+- **OSWorld:** You can refer to the [OSWorld Official](https://github.com/xlang-ai/OSWorld) to download all the cached files.
+- **OfficeWorld:** Download the experiment files from [ModelScope/OfficeWorld-Cache](https://www.modelscope.cn/datasets/shawliu9/OfficeWorld) and extract them into the `./cache` directory.
 
 ### 🤖 Deploy the Model
 
-There are two types of models: text-only and multimodal. You can download models via [Huggingface/AutoGLM-OS](fake—url) and specify the model name using the `--model` parameter.
+Two types of models are now available for open-source use. You can download the models and use them by setting the parameter `--model`:
+
+- **Text-Only:** [ModelScope/ComputerRL]([fake—url](https://www.modelscope.cn/models/shawliu9/computerrl-glm4-9b))
+- **Multimodal:** [ModelScope/ComputerRL-V]([fake—url](https://www.modelscope.cn/models/shawliu9/computerrl-glm4_1v-9b))
 
 ```bash
 pip install "sglang[all]"  # if not installed

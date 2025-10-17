@@ -50,14 +50,16 @@ pip install -r requirements.txt
 
 ### 📂 下载实验文件
 
-所有实验文件会缓存到 `./cache`。
+所有实验文件会缓存到 `./cache`目录下。可以通过以下方法获取实验文件：
 
-- **OSWorld:** 你可以参考 OSWorld 仓库，方便地下载所有缓存文件。
-- **OfficeWorld:** 从 [Huggingface/OfficeWorld-Cache](fake—url) 下载实验文件，并解压到 `./cache` 目录。
+- **OSWorld:** 你可以参考 [OSWorld 官方仓库](https://github.com/xlang-ai/OSWorld) 下载所有缓存文件。
+- **OfficeWorld:** 从 [ModelScope/OfficeWorld-Cache](https://www.modelscope.cn/datasets/shawliu9/OfficeWorld) 下载实验文件，并解压到 `./cache` 目录。
 
 ### 🤖 部署模型
 
-模型分为两类：纯文本模型和多模态模型。你可以通过 [Huggingface/AutoGLM-OS](fake—url) 下载模型，并使用 `--model` 参数指定模型名称。
+我们开源了两种类型的模型。你可以下载这些模型，并通过设置`--model`参数指定模型名称：
+- **Text-Only:** [ModelScope/ComputerRL]([fake—url](https://www.modelscope.cn/models/shawliu9/computerrl-glm4-9b))
+- **Multimodal:** [ModelScope/ComputerRL-V]([fake—url](https://www.modelscope.cn/models/shawliu9/computerrl-glm4_1v-9b))
 
 ```bash
 pip install "sglang[all]"  # if not installed
