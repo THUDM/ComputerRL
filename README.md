@@ -58,8 +58,8 @@ All experiment files will be cached under `./cache`. Obtain experiment files thr
 
 Two types of models are now available for open-source use. You can download the models and use them by setting the parameter `--model`:
 
-- **Text-Only:** [ModelScope/ComputerRL]([fake—url](https://www.modelscope.cn/models/shawliu9/computerrl-glm4-9b))
-- **Multimodal:** [ModelScope/ComputerRL-V]([fake—url](https://www.modelscope.cn/models/shawliu9/computerrl-glm4_1v-9b))
+- **Text-Only:** [ModelScope/ComputerRL](https://www.modelscope.cn/models/shawliu9/computerrl-glm4-9b)
+- **Multimodal:** [ModelScope/ComputerRL-V](https://www.modelscope.cn/models/shawliu9/computerrl-glm4_1v-9b)
 
 ```bash
 pip install "sglang[all]"  # if not installed

@@ -58,8 +58,8 @@ pip install -r requirements.txt
 ### 🤖 部署模型
 
 我们开源了两种类型的模型。你可以下载这些模型，并通过设置`--model`参数指定模型名称：
-- **Text-Only:** [ModelScope/ComputerRL]([fake—url](https://www.modelscope.cn/models/shawliu9/computerrl-glm4-9b))
-- **Multimodal:** [ModelScope/ComputerRL-V]([fake—url](https://www.modelscope.cn/models/shawliu9/computerrl-glm4_1v-9b))
+- **Text-Only:** [ModelScope/ComputerRL](https://www.modelscope.cn/models/shawliu9/computerrl-glm4-9b)
+- **Multimodal:** [ModelScope/ComputerRL-V](https://www.modelscope.cn/models/shawliu9/computerrl-glm4_1v-9b)
 
 ```bash
 pip install "sglang[all]"  # if not installed
