@@ -8,16 +8,16 @@
 
 _Read this in [English](README.md)._
 
-本仓库是 ComputerRL 的代码仓库，基于对 OSWorld 仓库的修改与简化。ComputerRL 专注于用于训练计算机使用代理的端到端在线强化学习方法。该项目在 OSWorld 基准环境的基础上进行了优化与简化，为计算机使用研究提供了更聚焦、更高效的实验平台。
+本仓库是 ComputerRL 的代码仓库，基于对 OSWorld 仓库的修改与简化。ComputerRL 专注于用于训练计算机使用智能体的端到端在线强化学习方法。该项目在 OSWorld 基准环境的基础上进行了优化与简化，为计算机使用研究提供了更聚焦、更高效的实验平台。
 
 <p align="center">
     <img src="assets/framework.png" alt="框架概览" width="100%"><br>
-    <em>我们提出了一种 API-GUI 行动范式，将自动构建的 API 与 GUI 操作无缝融合，以提升代理的效率与效果。以及一个包含 1,000+ 真实场景实例的大规模并行桌面环境，结合异步强化学习框架，实现高效采样与稳健的代理训练。</em>
+    <em>我们提出了一种 API-GUI 行动范式，将自动构建的 API 与 GUI 操作无缝融合，以提升智能体的效率与效果。以及一个包含 1,000+ 真实场景实例的大规模并行桌面环境，结合异步强化学习框架，实现高效采样与稳健的智能体训练。</em>
 </p>
 
 <p align="center">
     <img src="assets/results.png" alt="Main Results" width="60%"><br>
-    <em>The success rates of agents on OSWorld.</em>
+    <em>OSWorld 上主流智能体的成功率。</em>
 </p>
 
 ## 🌱 环境
@@ -126,7 +126,7 @@ docker stop $(docker ps -q) && docker rm $(docker ps -a -q)
 ## 🏢 OfficeWorld 基准
 
 OfficeWorld 基准构建自 [SpreadsheetBench](https://github.com/RUCKBReasoning/SpreadsheetBench)、[PPTC](https://github.com/gydpku/PPTC) 以及自研的 Writer 领域任务。  
-任务经过必要的适配以融入 OSWorld 框架，使得能够对面向办公场景的代理能力进行系统化评估。
+任务经过必要的适配以融入 OSWorld 框架，使得能够对面向办公场景的智能体能力进行系统化评估。
 
 ### ▶️ 运行 OfficeWorld 基准
 
