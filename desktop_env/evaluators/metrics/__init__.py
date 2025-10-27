@@ -155,6 +155,12 @@ from .vscode import (
     compare_zip_files
 )
 
+from .office_world import (
+    simple_docx_compare,
+    simple_pptx_compare,
+    compare_spreadsheet
+)
+
 
 def infeasible():
     pass
