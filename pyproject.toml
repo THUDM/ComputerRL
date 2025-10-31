@@ -1,0 +1,103 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "computerrl"
+version = "0.1.0"
+description = "Scaling End-to-End Online Reinforcement Learning for Computer Use Agents"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    {name = "Hanyu Lai", email = "hanyullai@outlook.com"}
+]
+keywords = ["reinforcement-learning", "computer-use", "agents", "osworld"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+dependencies = [
+    "numpy~=1.24.4",
+    "Pillow~=11.0.0",
+    "fabric",
+    "gymnasium~=0.28.1",
+    "requests",
+    "pytz~=2024.1",
+    "transformers~=4.35.2",
+    "torch~=2.5.0",
+    "accelerate",
+    "opencv-python-headless~=4.8.1.78",
+    "matplotlib~=3.7.4",
+    "pynput~=1.7.6",
+    "pyautogui~=0.9.54",
+    "psutil~=5.9.6",
+    "tqdm~=4.65.0",
+    "pandas~=2.2.3",
+    "flask~=3.0.0",
+    "requests-toolbelt~=1.0.0",
+    "ag2~=0.9.7",
+    "lxml",
+    "cssselect",
+    "xmltodict",
+    "openpyxl",
+    "python-docx",
+    "python-pptx",
+    "pypdf",
+    "PyGetWindow",
+    "rapidfuzz",
+    "pyacoustid",
+    "pygame",
+    "ImageHash",
+    "scikit-image",
+    "librosa",
+    "pymupdf",
+    "chardet",
+    "playwright",
+    "backoff",
+    "formulas",
+    "pydrive",
+    "fastdtw",
+    "odfpy",
+    "openai",
+    "func-timeout",
+    "beautifulsoup4",
+    "dashscope",
+    "google-generativeai",
+    "PyYaml",
+    "mutagen",
+    "easyocr",
+    "borb",
+    "pypdf2",
+    "pdfplumber",
+    "wandb",
+    "wrapt_timeout_decorator",
+    "gdown",
+    "tiktoken",
+    "groq",
+    "boto3",
+    "azure-identity",
+    "azure-mgmt-compute",
+    "azure-mgmt-network",
+    "docker",
+    "loguru",
+    "python-dotenv",
+    "tldextract",
+    "anthropic",
+    "alibabacloud_ecs20140526",
+    "alibabacloud_tea_openapi",
+    "alibabacloud_tea_util",
+]
+
+[project.urls]
+Homepage = "https://github.com/THUDM/ComputerRL"
+Paper = "https://arxiv.org/abs/2508.14040"
+"Bug Reports" = "https://github.com/THUDM/ComputerRL/issues"
+
+[tool.setuptools.packages.find]
+include = ["desktop_env*", "mm_agents*"]
